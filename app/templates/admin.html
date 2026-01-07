@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Tech | Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .admin-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .order-table th, .order-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .order-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        .order-table tr:hover {
+            background-color: #fafafa;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">LUMINA TECH <span style="font-size: 0.8em; font-weight: normal; color: #777;">| Admin</span></div>
+        <div class="nav-links">
+            <a href="/">Back to Site</a>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Order Database</h1>
+            <span>Total Orders: {{ orders|length }}</span>
+        </div>
+
+        {% if orders %}
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ loop.index }}</td>
+                    <td>{{ order.full_name }}</td>
+                    <td>{{ order.email }}</td>
+                    <td><strong>{{ order.product_interest }}</strong></td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.phone }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <h3>No orders found.</h3>
+            <p>Orders submitted currently will appear here.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

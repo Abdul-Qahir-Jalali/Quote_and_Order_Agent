@@ -6,24 +6,61 @@ Can be easily replaced with actual database implementation.
 """
 from typing import Dict, List, Any
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
 
 class OrderStorage:
     """
-    In-memory storage for orders.
-    
-    Future: Can be replaced with SQLAlchemy/database implementation.
+    File-based storage for orders using JSON.
+    Simulates a database using data/orders.json.
     """
     
-    def __init__(self):
-        """Initialize empty order storage."""
-        self._orders: List[Dict[str, Any]] = []
+    def __init__(self, storage_file: str = "data/orders.json"):
+        """
+        Initialize order storage with file path.
+        
+        Args:
+            storage_file: Path to JSON storage file
+        """
+        self.storage_file = storage_file
+        self._ensure_storage_dir()
+        self._load_orders()
+        
+    def _ensure_storage_dir(self):
+        """Ensure storage directory exists."""
+        dirname = os.path.dirname(self.storage_file)
+        if dirname and not os.path.exists(dirname):
+            os.makedirs(dirname)
+            
+    def _load_orders(self):
+        """Load orders from JSON file."""
+        if os.path.exists(self.storage_file):
+            try:
+                import json
+                with open(self.storage_file, 'r') as f:
+                    self._orders = json.load(f)
+                logger.info(f"Loaded {len(self._orders)} orders from {self.storage_file}")
+            except Exception as e:
+                logger.error(f"Error loading orders: {e}")
+                self._orders = []
+        else:
+            self._orders = []
+            
+    def _save_orders(self):
+        """Save orders to JSON file."""
+        try:
+            import json
+            with open(self.storage_file, 'w') as f:
+                json.dump(self._orders, f, indent=2)
+            logger.info(f"Saved {len(self._orders)} orders to {self.storage_file}")
+        except Exception as e:
+            logger.error(f"Error saving orders: {e}")
     
     def add_order(self, order_data: Dict[str, Any]) -> int:
         """
-        Add an order to storage.
+        Add an order to storage and save to file.
         
         Args:
             order_data: Order data dictionary
@@ -32,8 +69,10 @@ class OrderStorage:
             Order ID (1-indexed position in list)
         """
         self._orders.append(order_data)
+        self._save_orders()
+        
         order_id = len(self._orders)
-        logger.info(f"Order {order_id} added to storage")
+        logger.info(f"Order {order_id} added and saved")
         return order_id
     
     def get_all_orders(self) -> List[Dict[str, Any]]:
