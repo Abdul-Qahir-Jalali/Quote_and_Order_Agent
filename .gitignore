@@ -1,0 +1,15 @@
+# Secrets
+.env
+
+# Virtual Environment
+quote_and_order_agent/
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
