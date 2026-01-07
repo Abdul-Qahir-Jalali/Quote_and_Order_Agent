@@ -18,6 +18,7 @@ class ProductService:
     def __init__(self):
         """Initialize the product service with catalog from settings."""
         self.products = settings.known_products
+        self.catalog = settings.product_catalog
         logger.info(f"Product service initialized with {len(self.products)} products")
     
     def get_all_products(self) -> List[str]:
@@ -28,6 +29,15 @@ class ProductService:
             List of product names
         """
         return self.products.copy()
+
+    def get_catalog(self) -> List[dict]:
+        """
+        Get the full product catalog with metadata.
+        
+        Returns:
+            List of product dictionaries
+        """
+        return self.catalog.copy()
     
     def search_products(self, keyword: str) -> List[str]:
         """

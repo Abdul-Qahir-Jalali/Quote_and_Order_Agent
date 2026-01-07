@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Metropolitan | Premium Furniture Delivery</title>
+    <title>Lumina Tech | Premium Home & Office</title>
     <link rel="stylesheet" href="/static/style.css" />
     <!-- Google Fonts -->
     <link
@@ -14,7 +14,7 @@
   <body>
     <!-- Navigation -->
     <nav class="navbar">
-      <div class="logo">METROPOLITAN</div>
+      <div class="logo">LUMINA TECH</div>
       <div class="nav-links">
         <a href="#">Home</a>
         <a href="#collection">Collection</a>
@@ -25,7 +25,7 @@
     <!-- Hero Section -->
     <header class="hero">
       <div class="hero-content">
-        <h1>White Glove Delivery Done Right.</h1>
+        <h1>Modern Comfort. Timeless Design.</h1>
         <p>Experience the ultimate in logistics and furniture care.</p>
         <a href="#collection" class="btn primary-btn">View Collection</a>
       </div>
@@ -35,24 +35,17 @@
     <section id="collection" class="container">
       <h2 class="section-title">Our Premium Selection</h2>
       <div class="product-grid">
+        {% for product in products %}
         <div class="product-card">
-          <div class="product-image" style="background-color: #d4c4b5"></div>
-          <h3>The Cloud Sofa</h3>
-          <p>Starting at $2,499</p>
-          <button class="btn secondary-btn">Inquire</button>
+          <div class="product-image-container">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-img" />
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="product-desc">{{ product.description }}</p>
+          <p class="product-price">Starting at ${{ product.price }}</p>
+          <button class="btn secondary-btn" onclick="scrolToChat('{{ product.name }}')">Inquire</button>
         </div>
-        <div class="product-card">
-          <div class="product-image" style="background-color: #b5ced4"></div>
-          <h3>Artisan Oak Table</h3>
-          <p>Starting at $1,299</p>
-          <button class="btn secondary-btn">Inquire</button>
-        </div>
-        <div class="product-card">
-          <div class="product-image" style="background-color: #d4b5b5"></div>
-          <h3>Velvet Armchair</h3>
-          <p>Starting at $899</p>
-          <button class="btn secondary-btn">Inquire</button>
-        </div>
+        {% endfor %}
       </div>
     </section>
 
@@ -107,12 +100,12 @@
     <!-- Chat Widget -->
     <div class="chat-widget">
       <div class="chat-header">
-        <span>Metropolitan Assistant</span>
+        <span>Lumina Assistant</span>
         <button id="toggleChat">−</button>
       </div>
       <div class="chat-body" id="chatBody">
         <div class="message bot-message">
-          Hello! I can help you place an order or track a shipment. How can I
+          Hello! Welcome to Lumina Tech. How can I help you furnish your space today?
           assist you today?
         </div>
       </div>

@@ -1,5 +1,25 @@
-// Basic Interactivity
+// Scroll helper - Global scope to be accessible by HTML onclick
+window.scrolToChat = function(productName) {
+    const chatInput = document.getElementById('chatInput');
+    // Open chat wrapper if needed
+    const chatWidget = document.querySelector('.chat-widget');
+    const toggleChat = document.getElementById('toggleChat');
+    
+    // Simple logic: if chat is hidden (bottom is negative), show it
+    // We can rely on the existing toggle logic or just force it:
+    if (chatWidget.style.bottom === "-440px" || getComputedStyle(chatWidget).bottom === "-440px") {
+        chatWidget.style.bottom = "20px";
+        if(toggleChat) toggleChat.textContent = "−";
+    }
+
+    chatInput.value = "I'm interested in " + productName;
+    chatInput.focus();
+    // specific logic to scroll to chat input if page is long? 
+    // Usually fixed position, so no scroll needed, but focus is good.
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
 
     /* --- Chat Integration --- */
     const chatInput = document.getElementById('chatInput');

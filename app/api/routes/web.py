@@ -18,4 +18,9 @@ async def read_root(request: Request):
     Returns:
         Rendered HTML template
     """
-    return templates.TemplateResponse("index.html", {"request": request})
+    from app.services.product_service import ProductService
+    product_service = ProductService()
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "products": product_service.get_catalog()
+    })
