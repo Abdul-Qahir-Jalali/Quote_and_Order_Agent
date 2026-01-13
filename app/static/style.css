@@ -196,47 +196,48 @@ h3,
 }
 /* Message Styles */
 .message {
-    max-width: 80%;
-    padding: 0.8rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    line-height: 1.4;
+  max-width: 80%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 /* In-Chat Form Styles */
 .chat-form-container {
-    width: 100%;
-    margin-top: 10px;
+  width: 100%;
+  margin-top: 10px;
 }
 .chat-form {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.chat-form input, .chat-form select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 8px;
-    border: 1px solid #eee;
-    background: #fafafa;
-    border-radius: 4px;
-    font-size: 0.85rem;
+.chat-form input,
+.chat-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #eee;
+  background: #fafafa;
+  border-radius: 4px;
+  font-size: 0.85rem;
 }
 .chat-form button {
-    width: 100%;
-    padding: 8px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
+  width: 100%;
+  padding: 8px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
 }
 .chat-form button:disabled {
-    background: #ccc;
-    cursor: default;
+  background: #ccc;
+  cursor: default;
 }
 .bot-message {
   background: white;
@@ -272,35 +273,107 @@ h3,
 }
 /* Confirmation Button Style */
 .btn-confirm {
-    background-color: #28a745 !important; /* Green for success */
-    color: white;
+  background-color: #28a745 !important; /* Green for success */
+  color: white;
 }
 .btn-confirm:hover {
-    background-color: #218838 !important;
+  background-color: #218838 !important;
 }
 
 /* Markdown Styles in Chat */
 .bot-message p {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .bot-message p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
-.bot-message ul, .bot-message ol {
-    margin-left: 1.2rem;
-    margin-bottom: 0.5rem;
+.bot-message ul,
+.bot-message ol {
+  margin-left: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 .bot-message li {
-    margin-bottom: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 .bot-message strong {
-    font-weight: 600;
-    color: var(--primary);
+  font-weight: 600;
+  color: var(--primary);
 }
 .bot-message code {
-    background: #eee;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-family: monospace;
-    font-size: 0.9em;
+  background: #eee;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Layout */
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .logo {
+    margin-bottom: 1rem;
+  }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  .nav-links a {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  /* Hero */
+  .hero {
+    height: 50vh;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  /* Collection */
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .product-grid {
+    grid-template-columns: 1fr; /* Stack cards */
+    gap: 1.5rem;
+  }
+
+  /* Form */
+  .form-wrapper {
+    width: 100%;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Chat Widget */
+  .chat-widget {
+    width: 90%;
+    right: 5%;
+    left: 5%; /* Center it */
+    bottom: 15px;
+  }
+  .chat-body {
+    height: 300px; /* Slightly shorter on mobile */
+  }
 }
