@@ -166,16 +166,25 @@ h3,
 /* Chat Widget */
 .chat-widget {
   position: fixed;
-  bottom: 20px;
+  bottom: 0; /* Dock to bottom for easier sliding */
   right: 20px;
   width: 350px;
   background: white;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   overflow: hidden;
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform: translateY(0);
+}
+
+.chat-widget.minimized {
+    transform: translateY(calc(100% - 54px)); /* Keep header visible (approx 54px) */
 }
 .chat-header {
   background: var(--primary);
@@ -368,12 +377,14 @@ h3,
 
   /* Chat Widget */
   .chat-widget {
-    width: 90%;
-    right: 5%;
-    left: 5%; /* Center it */
-    bottom: 15px;
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 10px 10px 0 0; /* Only round top corners */
   }
   .chat-body {
-    height: 300px; /* Slightly shorter on mobile */
+    height: 50vh; /* Use viewport height for better fit */
+    max-height: 400px;
   }
 }
